@@ -1,0 +1,62 @@
+<div class="tab-pane fade show active" id="pills-view-item" role="tabpanel" aria-labelledby="pills-view-item-tab">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Location</th>
+                            <th>City</th>
+                            <th>Filled Room</th>
+                            <th>Empty Room</th>
+                            <th>Total Room</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% items.forEach(function(item, i) { %>
+                            <tr>
+                                <td>
+                                    <%= i+1 %>
+                                </td>
+                                <td>
+                                    <%= item.title %>
+                                </td>
+                                <td>
+                                    <%= item.city %>
+                                </td>
+                                <td>
+                                    <%= item.filled_room %>
+                                </td>
+                                <td>
+                                    <%= item.empty_room %>
+                                </td>
+                                <td>
+                                    <%= item.filled_room + item.empty_room %>
+                                </td>
+                                <td>
+                                    <%= item.price %>
+                                </td>
+                                <td>
+                                    <form action="/admin/item/<%= item.id %>/delete?_method=DELETE" method="POST">
+                                        <a href="/admin/item/show-image/<%= item.id %>"
+                                            class="btn btn-info btn-circle btn-sm"><i class="fas fa-image"></i></a>
+                                        <a href="/admin/item/<%= item.id %>"
+                                            class="btn btn-warning btn-circle btn-sm "><i class="fas fa-edit"></i></a>
+                                        <button type="submit" class="btn btn-danger btn-circle btn-sm"><i
+                                                class="fas fa-trash"></i></button>
+                                        <a href="/admin/item/show-detail-item/<%= item.id %>"
+                                            class="btn btn-success btn-circle btn-sm"><i class="fas fa-plus"></i></a>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

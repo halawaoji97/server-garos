@@ -1,0 +1,52 @@
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+            Add
+        </button>
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Title by city</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% categories.forEach(function(category, i) { %>
+                        <tr>
+                            <td>
+                                <%= i+1 %>
+                            </td>
+                            <td>
+                                <%= category.name %>
+                            </td>
+                            <td>
+                                <form action="/admin/category/<%= category._id %>?_method=DELETE" method="post">
+                                    <a href="javascript:void(0);" type="button"
+                                        class="btn btn-warning btn-circle btn-sm button-update"
+                                        data-id="<%= category._id %>" data-name="<%= category.name %>">
+                                        <i class="fas fa-fw fa-edit"></i>
+                                    </a>
+                                    <!-- <a href="javascript:void(0);" type="button"
+                                        class="btn btn-danger btn-circle btn-sm button-delete"
+                                        data-id="<%= category._id %>" data-name="<%= category.name %>">
+                                        <i class="fas fa-fw fa-trash"></i>
+                                    </a> -->
+                                    <button type="submit" class="btn btn-danger btn-circle btn-sm"><i
+                                            class="fas fa-fw fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<%- include('../../partials/header.ejs') %>
+    <div id="wrapper">
+        <%- include('../../partials/sidebar.ejs') %>
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content">
+                    <%- include('../../partials/topbar.ejs') %>
+                        <div class="container-fluid">
+                            <%- include('../../partials/message.ejs') %>
+                                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                    <h1 class="h3 mb-0 text-gray-800">
+                                        Item
+                                    </h1>
+                                </div>
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="pills-view-item-tab" data-toggle="pill"
+                                            href="#pills-view-item" role="tab" aria-controls="pills-view-item"
+                                            aria-selected="true">View Item</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="pills-add-item-tab" data-toggle="pill"
+                                            href="#pills-add-item" role="tab" aria-controls="pills-add-item"
+                                            aria-selected="false">Add Item</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="pills-tabContent">
+                                    <%- include('table_item.ejs') %>
+                                        <%- include('add_item.ejs') %>
+                                </div>
+                        </div>
+                </div>
+                <%- include('../../partials/footer.ejs') %>
+            </div>
+    </div>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../../partials/script.ejs') %>
+
+
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#description'))
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
