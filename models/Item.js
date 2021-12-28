@@ -48,6 +48,12 @@ const itemSchema = new mongoose.Schema({
       ref: 'Image',
     },
   ],
+  facilityId: [
+    {
+      type: ObjectId,
+      ref: 'Facility',
+    },
+  ],
 });
 
 module.exports = mongoose.model('Item', itemSchema);

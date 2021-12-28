@@ -11,22 +11,49 @@
                                         Item
                                     </h1>
                                 </div>
-                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link active" id="pills-view-item-tab" data-toggle="pill"
-                                            href="#pills-view-item" role="tab" aria-controls="pills-view-item"
-                                            aria-selected="true">View Item</a>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="pills-add-item-tab" data-toggle="pill"
-                                            href="#pills-add-item" role="tab" aria-controls="pills-add-item"
-                                            aria-selected="false">Add Item</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="pills-tabContent">
-                                    <%- include('table_item.ejs') %>
-                                        <%- include('add_item.ejs') %>
-                                </div>
+
+                                <% if(action=='view' ) { %>
+                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="pills-view-item-tab" data-toggle="pill"
+                                                href="#pills-view-item" role="tab" aria-controls="pills-view-item"
+                                                aria-selected="true">View Item</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="pills-add-item-tab" data-toggle="pill"
+                                                href="#pills-add-item" role="tab" aria-controls="pills-add-item"
+                                                aria-selected="false">Add Item</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <%- include('table_item.ejs') %>
+                                            <%- include('add_item.ejs') %>
+                                    </div>
+                                    <% } else if(action=='show image' ) { %>
+                                        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link active" id="pills-show-image-item-tab"
+                                                    data-toggle="pill" href="#pills-show-image-item" role="tab"
+                                                    aria-controls="pills-show-image-item" aria-selected="true">Show
+                                                    Image</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content" id="pills-tabContent">
+                                            <%- include('show_image_item.ejs') %>
+                                        </div>
+                                        <% } else { %>
+                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link active" id="pills-edit-item-tab"
+                                                        data-toggle="pill" href="#pills-edit-item" role="tab"
+                                                        aria-controls="pills-edit-item" aria-selected="true">Edit
+                                                        Item</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabContent">
+                                                <%- include('edit_item.ejs') %>
+                                            </div>
+                                            <% } %>
                         </div>
                 </div>
                 <%- include('../../partials/footer.ejs') %>
