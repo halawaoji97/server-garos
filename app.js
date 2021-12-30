@@ -13,7 +13,8 @@ var usersRouter = require('./routes/users');
 
 // CONNECT DB
 const mongoose = require('mongoose');
-const URI = 'mongodb://localhost:27017/asrog_db';
+// const URI = 'mongodb://localhost:27017/asrog_db';
+const URI = 'mongodb://localhost:27017/garos_db';
 
 const options = {
   autoIndex: false, // Don't build indexes
