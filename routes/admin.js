@@ -17,6 +17,15 @@ router.get('/item/show-image/:id', adminController.showImageItem);
 router.get('/item/:id', adminController.showEditItem);
 router.put('/item/:id', uploadMultiple, adminController.editItem);
 router.delete('/item/:id/delete', adminController.deleteItem);
+
+// ENDPOINT DETAIL ITEM
 router.get('/item/detail/:itemId', adminController.viewDetailItem);
+router.post('/item/add/facility', uploadSingle, adminController.addFacilyty);
+
+// ENDPOINT BANK
+router.get('/bank', adminController.viewBank);
+router.post('/bank', uploadSingle, adminController.addBank);
+router.put('/bank', uploadSingle, adminController.editBank);
+router.delete('/bank/:id', adminController.deleteBank);
 
 module.exports = router;
