@@ -12,11 +12,11 @@
                                 <!-- Page Heading -->
                                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                     <h1 class="h3 mb-0 text-gray-800">
-                                        Bank
+                                        Booking
                                     </h1>
                                 </div>
 
-                                <%- include('table_bank.ejs') %>
+                                <%- include('table_booking.ejs') %>
                         </div>
                 </div>
                 <!-- End of Main Content -->
@@ -53,22 +53,19 @@
             </div>
         </div>
     </div>
-
-    <%- include('add_modal.ejs') %>
-        <%- include('edit_modal.ejs') %>
-            <%- include('../../partials/script.ejs') %>
+    <%- include('../../partials/script.ejs') %>
 
 
-                <script>
-                    $('#dataTable').on('click', '.button-update', function () {
-                        let id = $(this).data('id');
-                        let name = $(this).data('name');
-                        let bankName = $(this).data('bank_name');
-                        let accountNumber = $(this).data('account_number');
-                        $('#edit-modal').modal('show');
-                        $('.id').val(id);
-                        $('.name').val(name);
-                        $('.bankName').val(bankName);
-                        $('.accountNumber').val(accountNumber);
-                    })
-                </script>
+        <script>
+            $('#dataTable').on('click', '.button-update', function () {
+                let id = $(this).data('id');
+                let name = $(this).data('name');
+                let bankName = $(this).data('bank_name');
+                let accountNumber = $(this).data('account_number');
+                $('#edit-modal').modal('show');
+                $('.id').val(id);
+                $('.name').val(name);
+                $('.bankName').val(bankName);
+                $('.accountNumber').val(accountNumber);
+            })
+        </script>

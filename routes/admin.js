@@ -1,7 +1,15 @@
 const router = require('express').Router();
 const adminController = require('../controllers/admin');
+const isLogin = require('../middlewares/auth');
 const { uploadSingle, uploadMultiple } = require('../middlewares/multer');
 
+// SIGNIN
+router.get('/signin', adminController.viewSignin);
+router.post('/signin', adminController.actionSignin);
+router.use(isLogin);
+router.get('/logout', adminController.actionLogout);
+
+// DASHBOARD
 router.get('/dashboard', adminController.viewDashboard);
 
 // ENDPOINT CATEGORY
@@ -27,5 +35,11 @@ router.get('/bank', adminController.viewBank);
 router.post('/bank', uploadSingle, adminController.addBank);
 router.put('/bank', uploadSingle, adminController.editBank);
 router.delete('/bank/:id', adminController.deleteBank);
+
+// ENDPOINT BOOKING
+router.get('/booking', adminController.viewBooking);
+router.get('/booking/:id', adminController.showDetailBooking);
+router.put('/booking/:id/confirmation', adminController.actionConfirmation);
+router.put('/booking/:id/reject', adminController.actionReject);
 
 module.exports = router;

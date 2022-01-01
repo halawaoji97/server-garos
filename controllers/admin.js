@@ -3,15 +3,77 @@ const Item = require('../models/Item');
 const Image = require('../models/Image');
 const Facility = require('../models/Facility');
 const Bank = require('../models/Bank');
-const path = require('path');
+const Booking = require('../models/Booking');
+const Admin = require('../models/Admin');
+const Member = require('../models/Member');
 
+const path = require('path');
 const fs = require('fs-extra');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
-  viewDashboard: (req, res) => {
+  viewSignin: async (req, res) => {
     try {
+      const alertMessage = req.flash('alertMessage');
+      const alertStatus = req.flash('alertStatus');
+      const alert = { message: alertMessage, status: alertStatus };
+      if (req.session.admin == null || req.session.admin == undefined) {
+        res.render('index', {
+          alert,
+          title: 'Asrog | Login',
+        });
+      } else {
+        return res.redirect('/admin/dashboard');
+      }
+    } catch (error) {
+      res.redirect('/admin/signin');
+    }
+  },
+
+  actionSignin: async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const admin = await Admin.findOne({ email: email });
+      if (!admin) {
+        req.flash('alertMessage', 'User yang anda masukan tidak ada!!');
+        req.flash('alertStatus', 'danger');
+        return res.redirect('/admin/signin');
+      }
+
+      const isPasswordMatch = await bcrypt.compare(password, admin.password);
+      if (!isPasswordMatch) {
+        req.flash('alertMessage', 'Password yang anda masukan tidak cocok!!');
+        req.flash('alertStatus', 'danger');
+        return res.redirect('/admin/signin');
+      }
+
+      req.session.admin = {
+        id: admin.id,
+        email: admin.email,
+      };
+      return res.redirect('/admin/dashboard');
+    } catch (error) {
+      res.redirect('/admin/signin');
+    }
+  },
+
+  actionLogout: (req, res) => {
+    req.session.destroy();
+    res.redirect('/admin/signin');
+  },
+
+  // Dashboard
+  viewDashboard: async (req, res) => {
+    try {
+      const booking = await Booking.find();
+      const member = await Member.find();
+      const item = await Item.find();
       res.render('admin/dashboard/view_dashboard', {
         title: 'Asrog | Dashboard',
+        admin: req.session.admin,
+        booking,
+        member,
+        item,
       });
     } catch (error) {
       res.redirect('/admin/dashboard');
@@ -28,6 +90,7 @@ module.exports = {
         title: 'Asrog | Category',
         categories,
         alert,
+        admin: req.session.admin,
       });
     } catch (error) {
       res.redirect('/admin/category');
@@ -99,6 +162,7 @@ module.exports = {
         alert,
         items,
         action: 'view',
+        admin: req.session.admin,
       });
     } catch (error) {
       res.redirect('/admin/item');
@@ -174,6 +238,7 @@ module.exports = {
         alert,
         item,
         action: 'show image',
+        admin: req.session.admin,
       });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
@@ -200,6 +265,7 @@ module.exports = {
         item,
         category,
         action: 'edit',
+        admin: req.session.admin,
       });
     } catch (error) {
       req.flash('alertMessage', `${error.message}`);
@@ -312,7 +378,7 @@ module.exports = {
         alert,
         itemId,
         facility,
-        // user: req.session.user,
+        admin: req.session.admin,
       });
     } catch (error) {
       res.redirect(`/admin/item/detail/${itemId}`);
@@ -359,6 +425,7 @@ module.exports = {
         title: 'Asrog | Bank',
         alert,
         bank,
+        admin: req.session.admin,
       });
     } catch (error) {
       res.redirect('/admin/bank');
@@ -432,6 +499,83 @@ module.exports = {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
       res.redirect('/admin/bank');
+    }
+  },
+
+  // BOOKING
+  viewBooking: async (req, res) => {
+    try {
+      const alertMessage = req.flash('alertMessage');
+      const alertStatus = req.flash('alertStatus');
+      const alert = { message: alertMessage, status: alertStatus };
+
+      const booking = await Booking.find()
+        .populate('memberId')
+        .populate('bankId');
+
+      res.render('admin/booking/view_booking', {
+        title: 'Asrog | Booking',
+        alert,
+        admin: req.session.admin,
+        booking,
+      });
+    } catch (error) {
+      res.redirect('/admin/booking');
+    }
+  },
+
+  showDetailBooking: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const alertMessage = req.flash('alertMessage');
+      const alertStatus = req.flash('alertStatus');
+      const alert = { message: alertMessage, status: alertStatus };
+
+      const booking = await Booking.findOne({ _id: id })
+        .populate('memberId')
+        .populate('bankId');
+
+      res.render('admin/booking/show_detail_booking', {
+        title: 'Asrog | Detail Booking',
+        admin: req.session.admin,
+        booking,
+        alert,
+      });
+    } catch (error) {
+      res.redirect('/admin/booking');
+    }
+  },
+  actionConfirmation: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const booking = await Booking.findOne({ _id: id });
+      const bookingId = booking.itemId._id;
+      const item = await Item.findOne({ _id: bookingId });
+
+      (item.empty_room -= 1),
+        (item.filled_room += 1),
+        (booking.payments.status = 'Accept');
+      await item.save();
+      await booking.save();
+      req.flash('alertMessage', 'Success Confirmation Pembayaran');
+      req.flash('alertStatus', 'success');
+      res.redirect(`/admin/booking/${id}`);
+    } catch (error) {
+      res.redirect(`/admin/booking/${id}`);
+    }
+  },
+
+  actionReject: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const booking = await Booking.findOne({ _id: id });
+      booking.payments.status = 'Reject';
+      await booking.save();
+      req.flash('alertMessage', 'Success Reject Pembayaran');
+      req.flash('alertStatus', 'success');
+      res.redirect(`/admin/booking/${id}`);
+    } catch (error) {
+      res.redirect(`/admin/booking/${id}`);
     }
   },
 };
