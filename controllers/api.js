@@ -47,7 +47,7 @@ module.exports = {
     try {
       const { id } = req.params;
       const item = await Item.findOne({ _id: id })
-        .populate({ path: 'facilityId', select: '_id name imageUrl' })
+        .populate({ path: 'facilityId', select: '_id name icon imageUrl' })
         .populate({ path: 'imageId', select: '_id imageUrl' });
 
       const bank = await Bank.find();
