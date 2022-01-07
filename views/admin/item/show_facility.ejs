@@ -12,12 +12,8 @@
                             <input type="text" class="form-control" name="name" placeholder="Enter name" required>
                         </div>
                         <div class="form-group">
-                            <label for="name">QTY</label>
-                            <input type="number" class="form-control" name="qty" placeholder="Enter qty" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Icon</label>
-                            <input type="file" class="form-control" name="image" required>
+                            <label for="icon">Icon</label>
+                            <input type="number" class="form-control" name="icon" placeholder="Enter icon" required>
                         </div>
                         <input type="hidden" value="<%= itemId %>" name="itemId">
                         <button type="submit" class="btn btn-primary">Save</button>
@@ -44,8 +40,9 @@
                                             <%= f.name %>
                                         </td>
                                         <td>
-                                            <img src="http://localhost:3000/<%= f.imageUrl %>" alt="imageUrl"
-                                                width="70px">
+                                            <span class="material-icons-outlined">
+                                                <%= f.icon %>
+                                            </span>
                                         </td>
                                         <td>
                                             <form action="/admin/feature/<%= f.id %>?_method=DELETE" method="POST">
