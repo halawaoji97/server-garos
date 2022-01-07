@@ -2,40 +2,43 @@ const seeder = require('mongoose-seed');
 const mongoose = require('mongoose');
 
 // Connect to MongoDB via Mongoose
-seeder.connect('mongodb://localhost:27017/garos_db', function () {
-  // Load Mongoose models
-  seeder.loadModels([
-    './models/Category',
-    './models/Bank',
-    './models/Item',
-    './models/Facility',
-    './models/Member',
-    './models/Image',
-    './models/Booking',
-    './models/Admin',
-  ]);
+seeder.connect(
+  'mongodb+srv://garos_db:asrog123@cluster0.u2obw.mongodb.net/garos_db?retryWrites=true&w=majority',
+  function () {
+    // Load Mongoose models
+    seeder.loadModels([
+      './models/Category',
+      './models/Bank',
+      './models/Item',
+      './models/Facility',
+      './models/Member',
+      './models/Image',
+      './models/Booking',
+      './models/Admin',
+    ]);
 
-  // Clear specified collections
-  seeder.clearModels(
-    [
-      'Category',
-      'Bank',
-      'Item',
-      'Member',
-      'Facility',
-      'Image',
-      'Booking',
-      'Admin',
-    ],
+    // Clear specified collections
+    seeder.clearModels(
+      [
+        'Category',
+        'Bank',
+        'Item',
+        'Member',
+        'Facility',
+        'Image',
+        'Booking',
+        'Admin',
+      ],
 
-    function () {
-      // Callback to populate DB once collections have been cleared
-      seeder.populateModels(data, function () {
-        seeder.disconnect();
-      });
-    }
-  );
-});
+      function () {
+        // Callback to populate DB once collections have been cleared
+        seeder.populateModels(data, function () {
+          seeder.disconnect();
+        });
+      }
+    );
+  }
+);
 
 var data = [
   // start category
