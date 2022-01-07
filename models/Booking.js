@@ -4,7 +4,7 @@ const { ObjectId } = mongoose.Schema;
 const bookingSchema = new mongoose.Schema({
   booking_start_date: {
     type: Date,
-    default: new Date(),
+    default: Date.now,
   },
   staying_start_date: {
     type: Date,
