@@ -87,16 +87,16 @@ var data = [
       //   Pluit
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902222'),
-        title: 'Tabby Town',
+        title: 'Kemayoran',
         price: 800000,
-        rate: 4.5,
-        city: 'Jakarta Timur',
+        rate: 3.5,
+        city: 'Jakarta Pusat',
         full_address:
-          'Jl. Cipinang Muara I No.29, Cipinang Muara, Kecamatan Jatinegara',
+          'Kemayoran, RT.15/RW.1, South Gunung Sahari, Kemayoran, Central Jakarta City, Jakarta 10610',
         empty_room: 54,
         filled_room: 20,
         description:
-          'Minimal techno is a minimalist subgenre of techno music. It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.',
+          'Dekat dengan pusat pembelajaan dan sangat cocok untuk mahasiswa dan karyawan karena di lengkapi dengan berbagai fasilitas yang mendukung.',
         unit: 'month',
         imageId: [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb1') },
@@ -114,14 +114,15 @@ var data = [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902223'),
         title: 'Cipinang',
-        price: 800000,
+        price: 600000,
         rate: 4.3,
-        city: 'Jakarta Utara',
-        full_address: 'Jl. Pelepah Blok R no 4',
+        city: 'Jakarta Timur',
+        full_address:
+          'Jl. Cipinang Baru Raya No.5, RW.11, Cipinang, Kec. Pulo Gadung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13240',
         empty_room: 60,
         filled_room: 30,
         description:
-          'Minimal techno is a minimalist subgenre of techno music. It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.',
+          'Berlokasi di daerah Cipinang, sudah menjamin kenyamanan dan keamanan bagi siapa saja yang ingin ngekost di sini, termasuk dalam perumahan dengan keamanan yang sangat ketat.',
         unit: 'month',
         imageId: [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb4') },
@@ -142,16 +143,43 @@ var data = [
         price: 800000,
         rate: 5,
         city: 'Jakarta Utara',
-        full_address: 'Jl. Indah no 40',
+        full_address:
+          'Jalan Boulevard Raya, RT.2/RW.17, East Kelapa Gading, Kelapa Gading, North Jakarta City, Jakarta',
         empty_room: 90,
         filled_room: 36,
         description:
-          'Minimal techno is a minimalist subgenre of techno music. It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.',
+          'Lokasi yang sangat elit di karenakan berlokasi di daerah Kelapa Gading, dengan dengan pusat pembelanjaan dan mudah mendapatkan transportasi jika ingin bepergian, serta di sediakan parkir yang cukup luas untuk penghuni kost.',
         unit: 'month',
         imageId: [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb7') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb8') },
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb9') },
+        ],
+        facilityId: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa01') },
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa02') },
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa03') },
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa04') },
+        ],
+        categoryId: '5e96cbe292b97300fc901111',
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc902225'),
+        title: 'Menteng',
+        price: 800000,
+        rate: 4.3,
+        city: 'Jakarta Pusat',
+        full_address:
+          'Jl. Cikini Raya No.2, RT.16/RW.1, Cikini, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10330',
+        empty_room: 130,
+        filled_room: 92,
+        description:
+          'Dekat dengan keramaian dan pusat pembelanjaan, toko elektronik dan cocok untuk kamu yang saat ini sedang menari kost yang murah namun berkualitas, karena tingakt keamanan sangat di utamakan.',
+        unit: 'month',
+        imageId: [
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd10') },
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd11') },
+          { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd12') },
         ],
         facilityId: [
           { _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90aa01') },
@@ -170,19 +198,58 @@ var data = [
     model: 'Image',
     documents: [
       {
-        // done
+        // kemayoran
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb1'),
-        imageUrl: 'images/image-mostpicked-1-min.jpg',
+        imageUrl: 'images/kemayoran.jpg',
       },
-      // done
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb2'),
-        imageUrl: 'images/image-mostpicked-2-min.jpg',
+        imageUrl: 'images/bed_room_kemayoran.jpg',
       },
-      // done
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb3'),
-        imageUrl: 'images/image-mostpicked-3-min.jpg',
+        imageUrl: 'images/kitchen_room_kemayoran.jpg',
+      },
+      // Cipinang
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb4'),
+        imageUrl: 'images/cipinang.jpg',
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb5'),
+        imageUrl: 'images/bed_room_cipinang.jpg',
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb6'),
+        imageUrl: 'images/kitchen_room_cipinang.jpg',
+      },
+
+      // kelapa gading
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb7'),
+        imageUrl: 'images/kel_gading.jpg',
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb8'),
+        imageUrl: 'images/bed_room_kel_gading.jpg',
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cdb9'),
+        imageUrl: 'images/kitchen_room_kel_gading.jpg',
+      },
+
+      // Menteng
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd10'),
+        imageUrl: 'images/menteng.jpg',
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd11'),
+        imageUrl: 'images/bed_room_menteng.jpg',
+      },
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc90cd12'),
+        imageUrl: 'images/kitchen_room_menteng.jpg',
       },
     ],
   },
