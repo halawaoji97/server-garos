@@ -380,7 +380,6 @@ var data = [
         memberId: mongoose.Types.ObjectId('5e96cbe292b97300fc903333'),
         bankId: mongoose.Types.ObjectId('5e96cbe292b97300fc903323'),
         payments: {
-          proof_payment: 'images/buktibayar.jpeg',
           bank_from: 'BCA',
           status: 'Proses',
           account_holder: 'ang',

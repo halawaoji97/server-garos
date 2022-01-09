@@ -42,9 +42,6 @@ const bookingSchema = new mongoose.Schema({
     ref: 'Bank',
   },
   payments: {
-    proof_payment: {
-      type: String,
-    },
     bank_from: {
       type: String,
       required: true,
