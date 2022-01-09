@@ -85,9 +85,9 @@ module.exports = {
       bank_from,
     } = req.body;
 
-    if (!req.file) {
-      return res.status(404).json({ message: 'Image not found' });
-    }
+    // if (!req.file) {
+    //   return res.status(404).json({ message: 'Image not found' });
+    // }
     console.log(idItem);
     console.log(booking_start_date);
     console.log(staying_start_date);
