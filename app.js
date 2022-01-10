@@ -65,7 +65,7 @@ app.use(
 );
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', usersRouter);
 
 // CALL ROUTER ADMIN
 app.use('/admin', adminRouter);

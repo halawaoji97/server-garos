@@ -15,6 +15,7 @@ seeder.connect(
       './models/Image',
       './models/Booking',
       './models/Admin',
+      './models/User',
     ]);
 
     // Clear specified collections
@@ -28,6 +29,7 @@ seeder.connect(
         'Image',
         'Booking',
         'Admin',
+        'User',
       ],
 
       function () {
@@ -443,6 +445,19 @@ var data = [
       {
         _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903346'),
         email: 'superadmin@gmail.com',
+        password: '123456',
+      },
+    ],
+  },
+  {
+    model: 'User',
+    documents: [
+      {
+        _id: mongoose.Types.ObjectId('5e96cbe292b97300fc903301'),
+        email: 'halawaoji@gmail.com',
+        full_name: 'Halawa Oji',
+        full_address: 'Jl. Hijau Daun',
+        phone_number: '081354636523',
         password: '123456',
       },
     ],
